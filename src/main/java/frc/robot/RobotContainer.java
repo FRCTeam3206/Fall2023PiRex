@@ -74,6 +74,7 @@ public class RobotContainer {
     return Autos.simpleAuto(m_robotDrive);
 
     // Alternative version of simpleAuto that used chained commands
-    // return m_robotDrive.driveTimedCommand(0.5, 2).andThen(m_robotDrive.driveTimedCommand(-0.5, 1));
+    // return m_robotDrive.driveTimedCommand(0.5, 2).andThen(m_robotDrive.driveTimedCommand(-0.5,
+    // 1));
   }
 }
