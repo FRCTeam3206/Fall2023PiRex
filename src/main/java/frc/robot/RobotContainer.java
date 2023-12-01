@@ -46,9 +46,9 @@ public class RobotContainer {
             () ->
                 m_robotDrive.arcadeDrive(
                     0.5 * MathUtil.applyDeadband(
-                        m_driverController.getLeftY(), OperatorConstants.kDriveDeadband),
-                    -0.5 * MathUtil.applyDeadband(
-                        m_driverController.getRightX(), OperatorConstants.kDriveDeadband)),
+                        Math.signum(m_driverController.getLeftY()) * Math.pow(Math.abs(m_driverController.getLeftY()), 1.5), OperatorConstants.kDriveDeadband),
+                    -0.6 * MathUtil.applyDeadband(
+                        Math.signum(m_driverController.getRightX()) * Math.pow(Math.abs(m_driverController.getRightX()), 2), OperatorConstants.kDriveDeadband)),
             m_robotDrive));
 
     /*
