@@ -2,7 +2,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class TurnDegrees extends CommandBase {
   Drive drive;
-  private double turnRadiansGoal;
+  private double goalAsDistance;
   private double leftEncoderDist;
   private double leftEncoderOffsetAsRotations;
   private double rightEncoderDist;
@@ -11,7 +11,7 @@ public class TurnDegrees extends CommandBase {
   public TurnDegrees(Drive drive, double degrees) { // uses degrees instead of radians because, for example, 45 is easier to write than Math.PI / 4 
     addRequirements(drive);
     this.drive = drive;
-    turnRadiansGoal = Math.PI * (degrees / 180);
+    goalAsDistance = Constants.AutonConstants.kTurningCircleCircumferenceInch * (degrees / 360);
   }
   
   public void initialize() {
@@ -22,14 +22,14 @@ public class TurnDegrees extends CommandBase {
     rightEncoderDist = 0;
   }
   public void execute() {
-    leftEncoderDist = 2 * Math.PI * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
-    rightEncoderDist = 2 * Math.PI * (drive.getRightEncoderPos() - rightEncoderOffsetAsRotations);
+    leftEncoderDist = Constants.AutonConstants.kWheelCircumferenceInch * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
+    rightEncoderDist = Constants.AutonConstants.kWheelCircumferenceInch * (drive.getRightEncoderPos() - rightEncoderOffsetAsRotations);
     drive.arcadeDrive(0, 0.5);
   }
   public void end() {
     drive.arcadeDrive(0, 0);
   }
   public boolean isFinished() {
-    return (leftEncoderDist + rightEncoderDist) / 2 >= turnRadiansGoal;
+    return (leftEncoderDist - rightEncoderDist) / 2 >= goalAsDistance;
   }
 }
