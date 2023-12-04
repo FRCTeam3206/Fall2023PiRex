@@ -27,18 +27,23 @@ public class RobotContainer {
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
+  SendableChooser<Command> auton_chooser = SendableChooser<>();
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    chooseAuton();
+    
   }
 
   private void configureBindings() {
     // Reset the encoders when the "a" button is pressed
-    m_driverController
+    /* m_driverController
         .a()
         .debounce(0.1)
         .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(), m_robotDrive));
+    */
 
     // Set drive default command
     m_robotDrive.setDefaultCommand(
@@ -69,9 +74,19 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+
+  private void chooseAuton() {
+    auton_chooser.setDefaultOption("Square For 15 Seconds", new RepeatCommand(new SequentialCommandGroup(new ForwardInches(drive, 24), new TurnDegrees(drive, 90))).withTimeout(15));
+    auton_chooser.addOption("Turn 90 Degrees", new TurnDegrees(drive, 90));
+    auton_chooser.addOption("Forward Three Feet", new ForwardInches(drive, 36));
+    SmartDashboard.putData(auton_chooser);
+  }
+
   public Command getAutonomousCommand() {
+    return auton_chooser.getSelected();
+    
     // An example command will be run in autonomous
-    return Autos.simpleAuto(m_robotDrive);
+    // return Autos.simpleAuto(m_robotDrive);
 
     // Alternative version of simpleAuto that used chained commands
     // return m_robotDrive.driveTimedCommand(0.5, 2).andThen(m_robotDrive.driveTimedCommand(-0.5,
