@@ -53,6 +53,22 @@ public class Drive extends SubsystemBase {
     m_rightEncoder.setPosition(0);
   }
 
+  public double getLeftEncoderPos() {
+    return m_leftEncoder.getPosition();
+  }
+
+  public double getRightEncoderPos() {
+    return m_rightEncoder.getPosition();
+  }
+
+  public double getLeftEncoderVelocity() {
+    return m_leftEncoder.getVelocity();
+  }
+
+  public double getRightEncoderVelocity() {
+    return m_rightEncoder.getVelocity();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
