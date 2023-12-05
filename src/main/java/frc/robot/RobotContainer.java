@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.ForwardInches;
+import frc.robot.commands.TurnDegrees;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drive;
 
 /**
@@ -22,6 +25,7 @@ import frc.robot.subsystems.Drive;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drive m_robotDrive = new Drive();
+  private final Arm m_arm = new Arm();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -79,6 +83,7 @@ public class RobotContainer {
     auton_chooser.setDefaultOption("Square For 15 Seconds", new RepeatCommand(new SequentialCommandGroup(new ForwardInches(drive, 24), new TurnDegrees(drive, 90))).withTimeout(15));
     auton_chooser.addOption("Turn 90 Degrees", new TurnDegrees(drive, 90));
     auton_chooser.addOption("Forward Three Feet", new ForwardInches(drive, 36));
+    auton_chooser.addOption("Score Corn", new SequentialCommandGroup(new ForwardInches(48), new TurnDegrees(-90), new ForwardInches(24), new InstantCommand(() -> m_arm.score())));
     SmartDashboard.putData(auton_chooser);
   }
 
