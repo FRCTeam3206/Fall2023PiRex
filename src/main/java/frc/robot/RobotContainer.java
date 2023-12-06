@@ -1,6 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+// to get rid of formatter problems, type: .\gradlew spotlessApply
 
 package frc.robot;
 
@@ -9,12 +10,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.RepeatCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
 import frc.robot.commands.ForwardInches;
 import frc.robot.commands.TurnDegrees;
 import frc.robot.subsystems.Arm;
@@ -47,7 +47,6 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
     chooseAuton();
-
   }
 
   private void configureBindings() {
@@ -55,19 +54,22 @@ public class RobotContainer {
     m_driverController
         .a()
         .debounce(0.1)
-        .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(),
-            m_robotDrive));
+        .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(), m_robotDrive));
 
     // Set drive default command
     m_robotDrive.setDefaultCommand(
         new RunCommand(
             () -> m_robotDrive.arcadeDrive(
-                0.5 * MathUtil.applyDeadband(
-                    Math.signum(m_driverController.getLeftY()) * Math.pow(Math.abs(m_driverController.getLeftY()), 1.5),
-                    OperatorConstants.kDriveDeadband),
-                -0.6 * MathUtil.applyDeadband(
-                    Math.signum(m_driverController.getRightX()) * Math.pow(Math.abs(m_driverController.getRightX()), 2),
-                    OperatorConstants.kDriveDeadband)),
+                0.5
+                    * MathUtil.applyDeadband(
+                        Math.signum(m_driverController.getLeftY())
+                            * Math.pow(Math.abs(m_driverController.getLeftY()), 1.5),
+                        OperatorConstants.kDriveDeadband),
+                -0.6
+                    * MathUtil.applyDeadband(
+                        Math.signum(m_driverController.getRightX())
+                            * Math.pow(Math.abs(m_driverController.getRightX()), 2),
+                        OperatorConstants.kDriveDeadband)),
             m_robotDrive));
 
     /*
@@ -89,18 +91,22 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-
   private void chooseAuton() {
-    auton_chooser.setDefaultOption("Square For 15 Seconds",
-        new RepeatCommand(new SequentialCommandGroup(new ForwardInches(m_robotDrive, 24), new TurnDegrees(
-            m_robotDrive, 90)))
+    auton_chooser.setDefaultOption(
+        "Square For 15 Seconds",
+        new RepeatCommand(
+            new SequentialCommandGroup(
+                new ForwardInches(m_robotDrive, 24), new TurnDegrees(m_robotDrive, 90)))
             .withTimeout(15));
     auton_chooser.addOption("Turn 90 Degrees", new TurnDegrees(m_robotDrive, 90));
     auton_chooser.addOption("Forward Three Feet", new ForwardInches(m_robotDrive, 36));
-    auton_chooser.addOption("Score Corn",
-        new SequentialCommandGroup(new ForwardInches(m_robotDrive, 48), new TurnDegrees(
-            m_robotDrive, -90),
-            new ForwardInches(m_robotDrive, 24), new InstantCommand(() -> m_arm.score())));
+    auton_chooser.addOption(
+        "Score Corn",
+        new SequentialCommandGroup(
+            new ForwardInches(m_robotDrive, 48),
+            new TurnDegrees(m_robotDrive, -90),
+            new ForwardInches(m_robotDrive, 24),
+            new InstantCommand(() -> m_arm.score())));
     SmartDashboard.putData(auton_chooser);
   }
 
