@@ -57,7 +57,7 @@ public class RobotContainer {
         .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(), m_robotDrive));
 
     // Set arm speed
-    m_arm.setDefaultCommand(new RunCommand(() -> m_arm.setSpeed(m_driverController.getLeftY())));
+    m_arm.setDefaultCommand(new RunCommand(() -> m_arm.setSpeed(m_driverController.getLeftY()), m_arm));
 
     // Set drive default command; drive is on right stick
     m_robotDrive.setDefaultCommand(

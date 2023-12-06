@@ -6,7 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
-  private VictorSPX armMotor = new VictorSPX(3); // NOT correct CAN Id
+  private VictorSPX armMotor = new VictorSPX(6);
 
   public Arm() {
   }
