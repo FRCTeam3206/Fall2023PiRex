@@ -56,14 +56,17 @@ public class RobotContainer {
         .debounce(0.1)
         .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(), m_robotDrive));
 
-    // Set drive default command
+    // Set arm speed
+    m_arm.setDefaultCommand(new RunCommand(() -> m_arm.setSpeed(m_driverController.getLeftY())));
+
+    // Set drive default command; drive is on right stick
     m_robotDrive.setDefaultCommand(
         new RunCommand(
             () -> m_robotDrive.arcadeDrive(
                 0.5
                     * MathUtil.applyDeadband(
-                        Math.signum(m_driverController.getLeftY())
-                            * Math.pow(Math.abs(m_driverController.getLeftY()), 1.5),
+                        Math.signum(m_driverController.getRightY())
+                            * Math.pow(Math.abs(m_driverController.getRightY()), 1.5),
                         OperatorConstants.kDriveDeadband),
                 -0.6
                     * MathUtil.applyDeadband(
@@ -106,7 +109,7 @@ public class RobotContainer {
             new ForwardInches(m_robotDrive, 48),
             new TurnDegrees(m_robotDrive, -90),
             new ForwardInches(m_robotDrive, 24),
-            new InstantCommand(() -> m_arm.score())));
+            new InstantCommand(() -> m_arm.setSpeed(0.25)).withTimeout(3)));
     SmartDashboard.putData(auton_chooser);
   }
 
