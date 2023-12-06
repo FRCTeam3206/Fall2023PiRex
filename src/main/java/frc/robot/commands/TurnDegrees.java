@@ -43,6 +43,10 @@ public class TurnDegrees extends CommandBase {
   }
 
   public boolean isFinished() {
-    return (leftEncoderDist - rightEncoderDist) / 2 >= goalAsDistance;
+    if (goalAsDistance > 0) {
+      return (Math.abs(leftEncoderDist) + Math.abs(rightEncoderDist)) / 2 >= goalAsDistance;
+    } else {
+      return -(Math.abs(leftEncoderDist) + Math.abs(rightEncoderDist)) / 2 <= goalAsDistance;
+    }
   }
 }
