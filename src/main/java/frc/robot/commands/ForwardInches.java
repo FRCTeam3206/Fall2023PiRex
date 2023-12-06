@@ -1,8 +1,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drive;
 import frc.robot.Constants;
+import frc.robot.subsystems.Drive;
 
 public class ForwardInches extends CommandBase {
   Drive drive;
@@ -28,10 +28,12 @@ public class ForwardInches extends CommandBase {
 
   public void execute() {
     drive.tankDrive(0.5, 0.5);
-    leftEncoderDist = Constants.AutonConstants.kWheelCircumferenceInch
-        * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
-    rightEncoderDist = Constants.AutonConstants.kWheelCircumferenceInch
-        * (drive.getRightEncoderPos() - rightEncoderOffsetAsRotations);
+    leftEncoderDist =
+        Constants.AutonConstants.kWheelCircumferenceInch
+            * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
+    rightEncoderDist =
+        Constants.AutonConstants.kWheelCircumferenceInch
+            * (drive.getRightEncoderPos() - rightEncoderOffsetAsRotations);
   }
 
   public void end() {

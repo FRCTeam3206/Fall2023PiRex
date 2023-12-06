@@ -54,7 +54,7 @@ public class Drive extends SubsystemBase {
   }
 
   // experiment to see if either getLeftEncoderPos() or getRightEncoderPos need to be inversed
-  
+
   public double getLeftEncoderPos() {
     return m_leftEncoder.getPosition();
   }

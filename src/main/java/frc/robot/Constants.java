@@ -25,12 +25,17 @@ public final class Constants {
   }
 
   public static class AutonConstants {
-    // The first four are private to reduce the number of options for referencing since the first four constants are only used to set the last two.
+    // The first four are private to reduce the number of options for referencing since the first
+    // four constants are only used to set the last two.
     private static final double kLeftRightWheelDistInch = 9.962762; // as measured in CAD
     private static final double kFrontBackWheelDistInch = 7.5; // as measured in CAD
-    private static final double kWheelRadiusInch = 3.965079 / 2; // as measured in CAD, 3.965079 is diameter
-    private static final double kTurningCircleRadiusInch = Math.sqrt(Math.pow(kLeftRightWheelDistInch / 2, 2) + Math.pow(kFrontBackWheelDistInch / 2, 2));
+    private static final double kWheelRadiusInch =
+        3.965079 / 2; // as measured in CAD, 3.965079 is diameter
+    private static final double kTurningCircleRadiusInch =
+        Math.sqrt(
+            Math.pow(kLeftRightWheelDistInch / 2, 2) + Math.pow(kFrontBackWheelDistInch / 2, 2));
     public static final double kWheelCircumferenceInch = 2 * Math.PI * kWheelRadiusInch;
-    public static final double kTurningCircleCircumferenceInch = 2 * Math.PI * kTurningCircleRadiusInch;
+    public static final double kTurningCircleCircumferenceInch =
+        2 * Math.PI * kTurningCircleRadiusInch;
   }
 }
