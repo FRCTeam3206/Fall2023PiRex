@@ -1,4 +1,8 @@
+package frc.robot.commands;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Drive;
+import frc.robot.Constants;
 
 public class ForwardInches extends CommandBase {
   Drive drive;
@@ -7,7 +11,7 @@ public class ForwardInches extends CommandBase {
   private double leftEncoderOffsetAsRotations;
   private double rightEncoderDist;
   private double rightEncoderOffsetAsRotations;
-  
+
   public ForwardInches(Drive drive, double dist) {
     addRequirements(drive);
     this.drive = drive;
@@ -21,17 +25,19 @@ public class ForwardInches extends CommandBase {
     leftEncoderDist = 0;
     rightEncoderDist = 0;
   }
-  
+
   public void execute() {
     drive.tankDrive(0.5, 0.5);
-    leftEncoderDist = Constants.AutonConstants.kWheelCircumferenceInch * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
-    rightEncoderDist = Constants.AutonConstants.kWheelCircumferenceInch * (drive.getRightEncoderPos() - rightEncoderOffsetAsRotations);
+    leftEncoderDist = Constants.AutonConstants.kWheelCircumferenceInch
+        * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
+    rightEncoderDist = Constants.AutonConstants.kWheelCircumferenceInch
+        * (drive.getRightEncoderPos() - rightEncoderOffsetAsRotations);
   }
 
   public void end() {
     drive.tankDrive(0, 0);
   }
-  
+
   public boolean isFinished() {
     return (leftEncoderDist - rightEncoderDist) / 2 >= distGoal;
   }
