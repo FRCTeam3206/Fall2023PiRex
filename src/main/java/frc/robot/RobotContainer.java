@@ -52,13 +52,11 @@ public class RobotContainer {
 
   private void configureBindings() {
     // Reset the encoders when the "a" button is pressed
-    /*
-     * m_driverController
-     * .a()
-     * .debounce(0.1)
-     * .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(),
-     * m_robotDrive));
-     */
+    m_driverController
+        .a()
+        .debounce(0.1)
+        .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(),
+            m_robotDrive));
 
     // Set drive default command
     m_robotDrive.setDefaultCommand(
