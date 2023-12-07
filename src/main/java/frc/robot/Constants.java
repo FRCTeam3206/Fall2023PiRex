@@ -24,6 +24,10 @@ public final class Constants {
     public static final int kRightDriveCanId = 1;
   }
 
+  public static class ButtonConstants {
+    public static final int resetEncodersButton = 8; // start button
+  }
+
   public static class AutonConstants {
     // The first four are private to reduce the number of options for referencing since the first
     // four constants are only used to set the last two.

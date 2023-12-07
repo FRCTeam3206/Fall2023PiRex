@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.ButtonConstants;
 import frc.robot.commands.ForwardInches;
 import frc.robot.commands.TurnDegrees;
 import frc.robot.subsystems.Arm;
@@ -52,7 +53,7 @@ public class RobotContainer {
   private void configureBindings() {
     // Reset the encoders when the "a" button is pressed
     m_driverController
-        .a()
+        .button(ButtonConstants.resetEncodersButton)
         .debounce(0.1)
         .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(), m_robotDrive));
 
