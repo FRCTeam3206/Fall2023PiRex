@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drive;
@@ -29,13 +30,16 @@ public class TurnDegrees extends CommandBase {
   }
 
   public void execute() {
+    drive.arcadeDrive(0, 0.25);
     leftEncoderDist =
         Constants.AutonConstants.kWheelCircumferenceInch
             * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
     rightEncoderDist =
         Constants.AutonConstants.kWheelCircumferenceInch
             * (drive.getRightEncoderPos() - rightEncoderOffsetAsRotations);
-    drive.arcadeDrive(0, 0.5);
+    // SmartDashboard.putNumber("Left Encoder Dist with TurnDegrees Offset", leftEncoderDist - leftEncoderOffsetAsRotations);
+    // SmartDashboard.putNumber("Right Encoder Dist with TurnDegrees Offset", rightEncoderDist - rightEncoderOffsetAsRotations);
+        
   }
 
   public void end() {

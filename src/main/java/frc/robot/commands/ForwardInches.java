@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drive;
@@ -27,7 +28,9 @@ public class ForwardInches extends CommandBase {
   }
 
   public void execute() {
-    drive.tankDrive(0.5, 0.5);
+    drive.tankDrive(0.3, 0.3);
+    // SmartDashboard.putNumber("Left Encoder Dist with ForwardInches Offset", leftEncoderDist - leftEncoderOffsetAsRotations);
+    // SmartDashboard.putNumber("Right Encoder Dist with ForwardInches Offset", rightEncoderDist - rightEncoderOffsetAsRotations);
     leftEncoderDist =
         Constants.AutonConstants.kWheelCircumferenceInch
             * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
