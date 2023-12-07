@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.AutonConstants;
 import java.util.function.DoubleSupplier;
 
 public class Drive extends SubsystemBase {
@@ -76,6 +77,8 @@ public class Drive extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Left Position", m_leftEncoder.getPosition());
     SmartDashboard.putNumber("Right Position", m_rightEncoder.getPosition());
+    SmartDashboard.putNumber("Left in Inches", getLeftEncoderPos() * AutonConstants.kWheelCircumferenceInch);
+    SmartDashboard.putNumber("Right in Inches", getRightEncoderPos() * AutonConstants.kWheelCircumferenceInch);
   }
 
   @Override
