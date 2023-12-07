@@ -102,6 +102,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   private void chooseAuton() {
+    auton_chooser.addOption("rotate", new InstantCommand(() -> m_robotDrive.arcadeDrive(0.0, 0.3), m_robotDrive));
     auton_chooser.addOption(
         "Square For 15 Seconds",
         new RepeatCommand(
@@ -116,7 +117,7 @@ public class RobotContainer {
             new ForwardInches(m_robotDrive, 48),
             new TurnDegrees(m_robotDrive, -90),
             new ForwardInches(m_robotDrive, 24),
-            new InstantCommand(() -> m_arm.setSpeed(0.25)).withTimeout(3)));
+            new InstantCommand(() -> m_arm.setSpeed(0.25), m_arm).withTimeout(3)));
     SmartDashboard.putData(auton_chooser);
   }
 
