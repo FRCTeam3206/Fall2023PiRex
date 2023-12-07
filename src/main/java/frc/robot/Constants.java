@@ -33,12 +33,12 @@ public final class Constants {
     // four constants are only used to set the last two.
     private static final double kLeftRightWheelDistInch = 9.962762; // as measured in CAD
     private static final double kFrontBackWheelDistInch = 7.5; // as measured in CAD
-    private static final double kWheelRadiusInch =
-        3.965079 / 2; // as measured in CAD, 3.965079 is diameter
+    private static final double kWheelDiameterInch =
+        3.965079; // as measured in CAD, 3.965079 is diameter
     private static final double kTurningCircleRadiusInch =
         Math.sqrt(
             Math.pow(kLeftRightWheelDistInch / 2, 2) + Math.pow(kFrontBackWheelDistInch / 2, 2));
-    public static final double kWheelCircumferenceInch = 2 * Math.PI * kWheelRadiusInch;
+    public static final double kWheelCircumferenceInch = Math.PI * kWheelDiameterInch;
     public static final double kTurningCircleCircumferenceInch =
         2 * Math.PI * kTurningCircleRadiusInch;
   }
