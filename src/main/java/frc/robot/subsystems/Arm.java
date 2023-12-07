@@ -12,6 +12,14 @@ public class Arm extends SubsystemBase {
   }
 
   public void setSpeed(double speed) {
-    armMotor.set(ControlMode.PercentOutput, 0.1 * speed);
+    armMotor.set(ControlMode.PercentOutput, 0.2 * speed);
+  }
+
+  public void armTriggers() {
+    
+  }
+
+  @Override
+  public void periodic() {
   }
 }
