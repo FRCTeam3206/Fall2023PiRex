@@ -57,7 +57,13 @@ public class RobotContainer {
         .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(), m_robotDrive));
 
     // Set arm speed
-    m_arm.setDefaultCommand(new RunCommand(() -> m_arm.setSpeed(m_driverController.getLeftY()), m_arm));
+    m_arm.setDefaultCommand(
+        new RunCommand(
+            () -> {
+                m_arm.setSpeed(m_driverController.getLeftY());
+                SmartDashboard.putNumber("Arm Motor Voltage %: ", 0.2 * m_driverController.getLeftY());
+            },
+            m_arm));
 
     // Set drive default command; drive is on right stick
     m_robotDrive.setDefaultCommand(
@@ -95,7 +101,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   private void chooseAuton() {
-    auton_chooser.setDefaultOption(
+    auton_chooser.addOption(
         "Square For 15 Seconds",
         new RepeatCommand(
             new SequentialCommandGroup(
@@ -103,7 +109,7 @@ public class RobotContainer {
             .withTimeout(15));
     auton_chooser.addOption("Turn 90 Degrees", new TurnDegrees(m_robotDrive, 90));
     auton_chooser.addOption("Forward Three Feet", new ForwardInches(m_robotDrive, 36));
-    auton_chooser.addOption(
+    auton_chooser.setDefaultOption(
         "Score Corn",
         new SequentialCommandGroup(
             new ForwardInches(m_robotDrive, 48),
