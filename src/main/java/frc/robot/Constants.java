@@ -41,5 +41,8 @@ public final class Constants {
     public static final double kWheelCircumferenceInch = Math.PI * kWheelDiameterInch;
     public static final double kTurningCircleCircumferenceInch =
         2 * Math.PI * kTurningCircleRadiusInch;
+    
+    public static final double timeTurn360DegreesAt30Percent = 3; // NOT accurate
+    public static final double timeForwardFootAt30Percent = 3; // NOT accurate
   }
 }

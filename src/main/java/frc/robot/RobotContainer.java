@@ -70,7 +70,7 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         new RunCommand(
             () -> m_robotDrive.arcadeDrive(
-                0.5
+                -0.5
                     * MathUtil.applyDeadband(
                         Math.signum(m_driverController.getRightY())
                             * Math.pow(Math.abs(m_driverController.getRightY()), 1.5),
@@ -102,6 +102,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   private void chooseAuton() {
+    auton_chooser.setDefaultOption("Basic forward score", new SequentialCommandGroup(new RunCommand(() -> m_robotDrive.arcadeDrive(0.4, 0), m_robotDrive).withTimeout(5), new RunCommand(() -> m_arm.setSpeed(0.2), m_arm).withTimeout(2)));
     auton_chooser.addOption("rotate", new InstantCommand(() -> m_robotDrive.arcadeDrive(0.0, 0.3), m_robotDrive));
     auton_chooser.addOption(
         "Square For 15 Seconds",
@@ -111,7 +112,7 @@ public class RobotContainer {
             .withTimeout(15));
     auton_chooser.addOption("Turn 90 Degrees", new TurnDegrees(m_robotDrive, 90));
     auton_chooser.addOption("Forward Three Feet", new ForwardInches(m_robotDrive, 36));
-    auton_chooser.setDefaultOption(
+    auton_chooser.addOption(
         "Score Corn",
         new SequentialCommandGroup(
             new ForwardInches(m_robotDrive, 48),
