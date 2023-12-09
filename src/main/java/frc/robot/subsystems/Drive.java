@@ -54,8 +54,6 @@ public class Drive extends SubsystemBase {
     m_rightEncoder.setPosition(0);
   }
 
-  // experiment to see if either getLeftEncoderPos() or getRightEncoderPos need to be inversed
-
   public double getLeftEncoderPos() {
     return m_leftEncoder.getPosition();
   }
@@ -71,7 +69,7 @@ public class Drive extends SubsystemBase {
   public double getRightEncoderVelocity() {
     return m_rightEncoder.getVelocity();
   }
-
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
