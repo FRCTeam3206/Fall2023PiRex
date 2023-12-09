@@ -29,6 +29,7 @@ public class Drive extends SubsystemBase {
   private RelativeEncoder m_rightEncoder;
 
   private SlewRateLimiter speedLimiter = new SlewRateLimiter(DriveConstants.kAccelLimit);
+  // private SlewRateLimiter rotLimiter = new SlewRateLimiter(0.2);
   private SlewRateLimiter leftLimiter = new SlewRateLimiter(DriveConstants.kAccelLimit);
   private SlewRateLimiter rightLimiter = new SlewRateLimiter(DriveConstants.kAccelLimit);
 
@@ -60,11 +61,11 @@ public class Drive extends SubsystemBase {
   }
 
   public double getLeftEncoderPos() {
-    return m_leftEncoder.getPosition() / DriveConstants.kCountsPerRevolution;
+    return 2.95 * AutonConstants.kWheelCircumferenceInch * m_leftEncoder.getPosition() / DriveConstants.kCountsPerRevolution;
   }
 
   public double getRightEncoderPos() {
-    return m_rightEncoder.getPosition() / DriveConstants.kCountsPerRevolution;
+    return 2.95 * AutonConstants.kWheelCircumferenceInch * m_rightEncoder.getPosition() / DriveConstants.kCountsPerRevolution;
   }
 
   public double getLeftEncoderVelocity() {
@@ -80,8 +81,8 @@ public class Drive extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Left Position", m_leftEncoder.getPosition());
     SmartDashboard.putNumber("Right Position", m_rightEncoder.getPosition());
-    SmartDashboard.putNumber("Left in Inches", getLeftEncoderPos() * AutonConstants.kWheelCircumferenceInch);
-    SmartDashboard.putNumber("Right in Inches", getRightEncoderPos() * AutonConstants.kWheelCircumferenceInch);
+    // SmartDashboard.putNumber("Left in Inches", getLeftEncoderPos() * AutonConstants.kWheelCircumferenceInch);
+    // SmartDashboard.putNumber("Right in Inches", getRightEncoderPos() * AutonConstants.kWheelCircumferenceInch);
   }
 
   @Override
