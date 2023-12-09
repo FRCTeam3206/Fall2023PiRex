@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -26,6 +27,10 @@ public class Drive extends SubsystemBase {
 
   private RelativeEncoder m_leftEncoder;
   private RelativeEncoder m_rightEncoder;
+
+  private SlewRateLimiter speedLimiter = new SlewRateLimiter(DriveConstants.kAccelLimit);
+  private SlewRateLimiter leftLimiter = new SlewRateLimiter(DriveConstants.kAccelLimit);
+  private SlewRateLimiter rightLimiter = new SlewRateLimiter(DriveConstants.kAccelLimit);
 
   public Drive() {
     // restore motors to defaults so we can know how they will behave
