@@ -26,7 +26,7 @@ public final class Constants {
 
   public static class ArmConstants {
     public static final int kArmCanId = 6;
-    public static final double kVelocityPercentMultiplier = 0.24;
+    public static final double kVelocityPercentMultiplier = 0.23;
   }
 
   public static class ButtonConstants {
