@@ -111,6 +111,13 @@ public class RobotContainer {
         new RunCommand(() -> m_robotDrive.arcadeDrive(0.4, 0.0), m_robotDrive).withTimeout(3.5),
         new RunCommand(() -> m_arm.setSpeed(-1.5), m_arm).withTimeout(2.0),
         new RunCommand(() -> m_arm.setSpeed(1.0), m_arm).withTimeout(0.5)));
+    auton_chooser.addOption("Score with encoders", new SequentialCommandGroup(
+        new ForwardInches(m_robotDrive, -125),
+        new TurnDegrees(m_robotDrive, -90),
+        new ForwardInches(m_robotDrive, -36),
+        new ForwardInches(m_robotDrive, 12),
+        new RunCommand(() -> m_arm.setSpeed(-1.5), m_arm).withTimeout(2),
+        new RunCommand(() -> m_arm.setSpeed(1), m_arm).withTimeout(1)));
     auton_chooser.addOption("TEST rotate", new InstantCommand(() -> m_robotDrive.arcadeDrive(0.0, 0.3), m_robotDrive));
     auton_chooser.addOption(
         "TEST Square For 15 Seconds",

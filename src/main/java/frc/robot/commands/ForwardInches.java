@@ -9,9 +9,10 @@ public class ForwardInches extends CommandBase {
   Drive drive;
   private double distGoal;
   private double leftEncoderDist;
-  private double leftEncoderOffsetAsRotations;
+  private double leftOffset;
   private double rightEncoderDist;
-  private double rightEncoderOffsetAsRotations;
+  private double rightOffset;
+  private double totalDist;
 
   public ForwardInches(Drive drive, double dist) {
     addRequirements(drive);
@@ -21,22 +22,20 @@ public class ForwardInches extends CommandBase {
 
   public void initialize() {
     drive.tankDrive(0, 0);
-    leftEncoderOffsetAsRotations = drive.getLeftEncoderPos();
-    rightEncoderOffsetAsRotations = drive.getRightEncoderPos();
+    leftOffset = drive.getLeftEncoderPos();
+    rightOffset = drive.getRightEncoderPos();
     leftEncoderDist = 0;
     rightEncoderDist = 0;
+    totalDist = 0;
   }
 
   public void execute() {
     drive.tankDrive(0.3, 0.3);
     // SmartDashboard.putNumber("Left Encoder Dist with ForwardInches Offset", leftEncoderDist - leftEncoderOffsetAsRotations);
     // SmartDashboard.putNumber("Right Encoder Dist with ForwardInches Offset", rightEncoderDist - rightEncoderOffsetAsRotations);
-    leftEncoderDist =
-        Constants.AutonConstants.kWheelCircumferenceInch
-            * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
-    rightEncoderDist =
-        Constants.AutonConstants.kWheelCircumferenceInch
-            * (drive.getRightEncoderPos() - rightEncoderOffsetAsRotations);
+    leftEncoderDist = drive.getLeftEncoderPos() - leftOffset;
+    rightEncoderDist = drive.getRightEncoderPos() - rightOffset;
+    totalDist = (leftEncoderDist + rightEncoderDist) / 2;
   }
 
   public void end() {
@@ -44,6 +43,6 @@ public class ForwardInches extends CommandBase {
   }
 
   public boolean isFinished() {
-    return (leftEncoderDist - rightEncoderDist) / 2 >= distGoal;
+    return distGoal > 0 ? totalDist >= distGoal : totalDist <= distGoal;
   }
 }
