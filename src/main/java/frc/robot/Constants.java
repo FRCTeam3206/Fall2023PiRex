@@ -22,6 +22,7 @@ public final class Constants {
     // SPARK MAX CAN IDs
     public static final int kLeftDriveCanId = 2;
     public static final int kRightDriveCanId = 1;
+    public static final double kAccelLimit = 1; // not sure what this value should be
   }
 
   public static class ArmConstants {
