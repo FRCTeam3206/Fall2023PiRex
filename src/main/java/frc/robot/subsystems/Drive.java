@@ -47,11 +47,11 @@ public class Drive extends SubsystemBase {
   }
 
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(-fwd, rot);
+    m_drive.arcadeDrive(speedLimiter.calculate(-fwd), rot);
   }
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
-    m_drive.tankDrive(leftSpeed, rightSpeed);
+    m_drive.tankDrive(leftLimiter.calculate(leftSpeed), rightLimiter.calculate(rightSpeed));
   }
 
   public void resetEncoders() {
