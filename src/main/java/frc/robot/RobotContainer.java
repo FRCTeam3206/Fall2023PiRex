@@ -111,17 +111,17 @@ public class RobotContainer {
         new RunCommand(() -> m_robotDrive.arcadeDrive(0.4, 0.0), m_robotDrive).withTimeout(3.5),
         new RunCommand(() -> m_arm.setSpeed(-1.5), m_arm).withTimeout(2.0),
         new RunCommand(() -> m_arm.setSpeed(1.0), m_arm).withTimeout(0.5)));
-    auton_chooser.addOption("rotate", new InstantCommand(() -> m_robotDrive.arcadeDrive(0.0, 0.3), m_robotDrive));
+    auton_chooser.addOption("TEST rotate", new InstantCommand(() -> m_robotDrive.arcadeDrive(0.0, 0.3), m_robotDrive));
     auton_chooser.addOption(
-        "Square For 15 Seconds",
+        "TEST Square For 15 Seconds",
         new RepeatCommand(
             new SequentialCommandGroup(
                 new ForwardInches(m_robotDrive, 24), new TurnDegrees(m_robotDrive, 90)))
             .withTimeout(15));
-    auton_chooser.addOption("Turn 90 Degrees", new TurnDegrees(m_robotDrive, 90));
-    auton_chooser.addOption("Forward Three Feet", new ForwardInches(m_robotDrive, 36));
+    auton_chooser.addOption("TEST Turn 90 Degrees", new TurnDegrees(m_robotDrive, 90));
+    auton_chooser.addOption("TEST Forward Three Feet", new ForwardInches(m_robotDrive, 36));
     auton_chooser.addOption(
-        "Score Corn",
+        "TEST Score Corn",
         new SequentialCommandGroup(
             new ForwardInches(m_robotDrive, 48),
             new TurnDegrees(m_robotDrive, -90),
