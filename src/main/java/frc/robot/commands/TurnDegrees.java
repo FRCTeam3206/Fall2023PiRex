@@ -9,9 +9,9 @@ public class TurnDegrees extends CommandBase {
   Drive drive;
   private double goalAsDistance;
   private double leftEncoderDist;
-  private double leftEncoderOffsetAsRotations;
+  private double leftOffset;
   private double rightEncoderDist;
-  private double rightEncoderOffsetAsRotations;
+  private double rightOffset;
 
   public TurnDegrees(
       Drive drive, double degrees) { // uses degrees instead of radians because, for example, 45 is
@@ -23,20 +23,16 @@ public class TurnDegrees extends CommandBase {
 
   public void initialize() {
     drive.arcadeDrive(0, 0);
-    leftEncoderOffsetAsRotations = drive.getLeftEncoderPos();
-    rightEncoderOffsetAsRotations = drive.getRightEncoderPos();
+    leftOffset = drive.getLeftEncoderPos();
+    rightOffset = drive.getRightEncoderPos();
     leftEncoderDist = 0;
     rightEncoderDist = 0;
   }
 
   public void execute() {
     drive.arcadeDrive(0, 0.25);
-    leftEncoderDist =
-        Constants.AutonConstants.kWheelCircumferenceInch
-            * (drive.getLeftEncoderPos() - leftEncoderOffsetAsRotations);
-    rightEncoderDist =
-        Constants.AutonConstants.kWheelCircumferenceInch
-            * (drive.getRightEncoderPos() - rightEncoderOffsetAsRotations);
+    leftEncoderDist = drive.getLeftEncoderPos() - leftOffset;
+    rightEncoderDist = drive.getRightEncoderPos() - rightOffset;
     // SmartDashboard.putNumber("Left Encoder Dist with TurnDegrees Offset", leftEncoderDist - leftEncoderOffsetAsRotations);
     // SmartDashboard.putNumber("Right Encoder Dist with TurnDegrees Offset", rightEncoderDist - rightEncoderOffsetAsRotations);
         
