@@ -50,6 +50,10 @@ public class RobotContainer {
     chooseAuton();
   }
 
+  public double triggerForArm() {
+    return m_driverController.getRawAxis(3) - m_driverController.getRawAxis(2); // raw axis 3 is right bumper, raw axis 2 is left bumper
+  }
+  
   private void configureBindings() {
     // Reset the encoders when the "a" button is pressed
     m_driverController
@@ -62,8 +66,8 @@ public class RobotContainer {
         new RunCommand(
             () -> {
                 // m_arm.setSpeed(0);
-                m_arm.setSpeed(1 * m_driverController.getLeftY());
-                SmartDashboard.putNumber("Arm Motor Voltage %: ", 1 * m_driverController.getLeftY()); //(m_driverController.getRawAxis(2)-m_driverController.getRawAxis(3))
+                m_arm.setSpeed(triggerForArm());
+                SmartDashboard.putNumber("Arm Motor Voltage %: ", triggerForArm()); //(m_driverController.getRawAxis(2)-m_driverController.getRawAxis(3))
             },
             m_arm));
     // m_driverController.pov
@@ -78,8 +82,8 @@ public class RobotContainer {
                         OperatorConstants.kDriveDeadband),
                 -0.5
                     * MathUtil.applyDeadband(
-                        Math.signum(m_driverController.getRightX())
-                            * Math.pow(Math.abs(m_driverController.getRightX()), 2),
+                        Math.signum(m_driverController.getLeftX())
+                            * Math.pow(Math.abs(m_driverController.getLeftX()), 2),
                         OperatorConstants.kDriveDeadband)),
             m_robotDrive));
 
