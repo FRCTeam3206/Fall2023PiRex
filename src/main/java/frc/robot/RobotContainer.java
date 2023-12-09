@@ -104,9 +104,9 @@ public class RobotContainer {
    */
   private void chooseAuton() {
     auton_chooser.setDefaultOption("Basic forward score", new SequentialCommandGroup(
-        new RunCommand(() -> m_robotDrive.arcadeDrive(0.4, 0), m_robotDrive).withTimeout(5),
-        new RunCommand(() -> m_arm.setSpeed(-1.5), m_arm).withTimeout(2),
-        new RunCommand(() -> m_arm.setSpeed(1), m_arm).withTimeout(0.5)));
+        new RunCommand(() -> m_robotDrive.arcadeDrive(0.4, 0.0), m_robotDrive).withTimeout(3.5),
+        new RunCommand(() -> m_arm.setSpeed(-1.5), m_arm).withTimeout(2.0),
+        new RunCommand(() -> m_arm.setSpeed(1.0), m_arm).withTimeout(0.5)));
     auton_chooser.addOption("rotate", new InstantCommand(() -> m_robotDrive.arcadeDrive(0.0, 0.3), m_robotDrive));
     auton_chooser.addOption(
         "Square For 15 Seconds",
