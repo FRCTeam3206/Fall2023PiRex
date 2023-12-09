@@ -127,7 +127,7 @@ public class RobotContainer {
             new TurnDegrees(m_robotDrive, -90),
             new ForwardInches(m_robotDrive, 24),
             new InstantCommand(() -> m_arm.setSpeed(0.25), m_arm).withTimeout(3)));
-    SmartDashboard.putData(auton_chooser);
+    SmartDashboard.putData("Auton Options", auton_chooser);
   }
 
   public Command getAutonomousCommand() {
