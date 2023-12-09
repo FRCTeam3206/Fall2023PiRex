@@ -57,7 +57,7 @@ public class RobotContainer {
   private void configureBindings() {
     // Reset the encoders when the "a" button is pressed
     m_driverController
-        .button(ButtonConstants.resetEncodersButton)
+        .button(ButtonConstants.kResetEncodersButton)
         .debounce(0.1)
         .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(), m_robotDrive));
 
@@ -202,7 +202,7 @@ public class RobotContainer {
 //   private void configureBindings() {
 //     // Reset the encoders when the "a" button is pressed
 //     m_driverController
-//         .button(ButtonConstants.resetEncodersButton)
+//         .button(ButtonConstants.kResetEncodersButton)
 //         .debounce(0.1)
 //         .onTrue(new InstantCommand(() -> m_robotDrive.resetEncoders(), m_robotDrive));
 
