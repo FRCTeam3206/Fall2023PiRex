@@ -23,6 +23,7 @@ public final class Constants {
     public static final int kLeftDriveCanId = 2;
     public static final int kRightDriveCanId = 1;
     public static final double kAccelLimit = 1; // not sure what this value should be
+    public static final int kCountsPerRevolution = 42 * 5;
   }
 
   public static class ArmConstants {
@@ -31,7 +32,7 @@ public final class Constants {
   }
 
   public static class ButtonConstants {
-    public static final int resetEncodersButton = 8; // start button
+    public static final int kResetEncodersButton = 8; // start button
   }
 
   public static class AutonConstants {
