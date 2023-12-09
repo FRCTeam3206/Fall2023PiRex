@@ -23,4 +23,26 @@ public final class Constants {
     public static final int kLeftDriveCanId = 2;
     public static final int kRightDriveCanId = 1;
   }
+
+  public static class ButtonConstants {
+    public static final int resetEncodersButton = 8; // start button
+  }
+
+  public static class AutonConstants {
+    // The first four are private to reduce the number of options for referencing since the first
+    // four constants are only used to set the last two.
+    private static final double kLeftRightWheelDistInch = 9.962762; // as measured in CAD
+    private static final double kFrontBackWheelDistInch = 7.5; // as measured in CAD
+    private static final double kWheelDiameterInch =
+        3.965079; // as measured in CAD, 3.965079 is diameter
+    private static final double kTurningCircleRadiusInch =
+        Math.sqrt(
+            Math.pow(kLeftRightWheelDistInch / 2, 2) + Math.pow(kFrontBackWheelDistInch / 2, 2));
+    public static final double kWheelCircumferenceInch = Math.PI * kWheelDiameterInch;
+    public static final double kTurningCircleCircumferenceInch =
+        2 * Math.PI * kTurningCircleRadiusInch;
+    
+    public static final double timeTurn360DegreesAt30Percent = 3; // NOT accurate
+    public static final double timeForwardFootAt30Percent = 3; // NOT accurate
+  }
 }
