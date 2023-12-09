@@ -60,11 +60,11 @@ public class Drive extends SubsystemBase {
   }
 
   public double getLeftEncoderPos() {
-    return m_leftEncoder.getPosition();
+    return m_leftEncoder.getPosition() / DriveConstants.kCountsPerRevolution;
   }
 
   public double getRightEncoderPos() {
-    return m_rightEncoder.getPosition();
+    return m_rightEncoder.getPosition() / DriveConstants.kCountsPerRevolution;
   }
 
   public double getLeftEncoderVelocity() {
