@@ -24,6 +24,11 @@ public final class Constants {
     public static final int kRightDriveCanId = 1;
   }
 
+  public static class ArmConstants {
+    public static final int kArmCanId = 6;
+    public static final double kVelocityPercentMultiplier = 0.24;
+  }
+
   public static class ButtonConstants {
     public static final int resetEncodersButton = 8; // start button
   }
